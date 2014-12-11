@@ -1,0 +1,17 @@
+.DS_Store
+
+node_modules
+public
+dist
+
+.vagrant
+.jshintrc
+npm-debug.log
+.sass-cache
+
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+

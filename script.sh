@@ -3,29 +3,26 @@
 echo "Provisioning virtual machine... for packer"
 
 echo "Update apt-get"
+sudo add-apt-repository ppa:chris-lea/node.js 
 sudo apt-get update 
 
-echo "Java, curl, htop"
-sudo apt-get install openjdk-7-jre-headless -y
+echo "Installing curl, htop, build essentials, openssl, libssl-dev, pkg-config"
 sudo apt-get install curl -y
 sudo apt-get install htop -y
-
-echo "ElasticSearch"
-if [ ! -f "./elasticsearch-1.1.1.deb" ]; then wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.1.deb; fi
-sudo dpkg -i elasticsearch-1.1.1.deb
-sudo cp /tmp/packer/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
-cd /usr/share/elasticsearch/
-sudo bin/plugin -install elasticsearch/elasticsearch-cloud-aws/2.1.1
+sudo apt-get install build-essential openssl libssl-dev pkg-config -y
 
 
-sudo service elasticsearch start
-sudo update-rc.d elasticsearch defaults
 
-echo "install pip so i can install elasticsearch-curator"
-sudo apt-get install python-pip -y
+echo "nodejs"
 
-echo "pip install elasticsearch-curator"
-sudo pip install elasticsearch-curator
+cd /usr/local/src
+sudo mkdir node
+cd node
+sudo wget http://nodejs.org/dist/v0.10.33/node-v0.10.33.tar.gz
+sudo tar -xzf node-v0.10.33.tar.gz 
+cd node-v0.10.33/
+sudo ./configure
+sudo make
+sudo make install
 
-echo "crontabs?"
-sudo crontab /tmp/curator
+

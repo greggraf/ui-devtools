@@ -50,6 +50,7 @@ From within the `ui-devtools` directory, issue `vagrant up` and the development 
 
 - nodejs/npm
 - phantomjs
-- casperjs
-- gruntjs
+- curl
+- htop
+- git
 

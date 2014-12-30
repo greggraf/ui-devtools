@@ -36,3 +36,7 @@ if ! type "phantomjs" > /dev/null; then
   sudo tar -xvf phantomjs-1.9.2-linux-x86_64.tar.bz2
   sudo ln -s /opt/phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
 fi
+
+echo "add node_modules/.bin to path"
+echo 'export PATH=$PATH:node_modules/.bin' >> /home/vagrant/.profile
+echo 'export PATH=$PATH:node_modules/.bin' >> /home/vagrant/.bash_profile

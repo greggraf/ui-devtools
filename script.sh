@@ -5,14 +5,17 @@ echo "Provisioning virtual machine"
 echo "Update apt-get"
 sudo apt-get update 
 
-echo "Installing curl, htop, build essentials, openssl, libssl-dev, pkg-config, git-core, libfontconfig, libfontconfig-dev, libfreetype6-dev"
+echo "Installing curl, htop, build essentials, openssl, libssl-dev, pkg-config, libfontconfig, libfontconfig-dev, libfreetype6-dev"
 sudo apt-get install curl -y
 sudo apt-get install htop -y
 sudo apt-get install build-essential openssl libssl-dev pkg-config -y
-sudo apt-get install git-core -y
-
 sudo apt-get install libfontconfig libfontconfig-dev libfreetype6-dev -y
 
+echo "switch apt repos and get 2.x version of git"
+sudo apt-get install software-properties-common python-software-properties -y
+sudo add-apt-repository ppa:git-core/ppa -y
+sudo apt-get update
+sudo apt-get install git -y
 
 echo "nodejs"
 
@@ -20,9 +23,9 @@ if ! type "node" > /dev/null; then
   cd /usr/local/src
   sudo mkdir node
   cd node
-  sudo wget http://nodejs.org/dist/v0.10.33/node-v0.10.33.tar.gz
-  sudo tar -xzf node-v0.10.33.tar.gz 
-  cd node-v0.10.33/
+  sudo wget http://nodejs.org/dist/v0.10.35/node-v0.10.35.tar.gz
+  sudo tar -xzf node-v0.10.35.tar.gz 
+  cd node-v0.10.35/
   sudo ./configure
   sudo make
   sudo make install

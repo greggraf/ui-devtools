@@ -28,6 +28,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.network :forwarded_port, guest: 3000, host: 8088
+  config.vm.network :forwarded_port, guest: 9876, host: 9876
 
   config.vm.provision :shell, :inline => "echo -e '#{File.read("#{Dir.home}/.gitconfig")}' > '/home/vagrant/.gitconfig'"
   config.vm.provision "shell", path: "script.sh"

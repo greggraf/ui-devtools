@@ -44,7 +44,9 @@ From within the `ui-devtools` directory, issue `vagrant up` and the development 
 - `vagrant halt` - shutdown the VM
 - `vagrant destroy` - shutdown the VM and erase all installed software.
 
-#
+##### Port Forwarding#####
+- 3000 -> 8081 web server
+- 9876 -> 9876 Karma test runner and results
 
 #####Included Software#####
 

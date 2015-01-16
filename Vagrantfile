@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--cpuexecutioncap", "75"]
     v.customize ["modifyvm", :id, "--memory", "1024"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+		v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]    
   end
 
   if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) == nil
@@ -25,6 +26,7 @@ Vagrant.configure("2") do |config|
   else
     config.vm.synced_folder ".", "/current/"
     config.vm.synced_folder "..", "/parent/"
+		config.vm.provision "shell", path: "npm_sym.sh"
   end
 
   config.vm.network :forwarded_port, guest: 3000, host: 8088

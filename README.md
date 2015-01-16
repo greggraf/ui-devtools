@@ -53,6 +53,19 @@ From within the `ui-devtools` directory, issue `vagrant up` and the development 
 - `vagrant destroy` - shutdown the VM and erase all installed software.
 
 
+## Git Commands
+
+- `git status` - show what branch you are on and what changes are tracked
+- `git commit -m "commit message" filename` - commit file changes to local staging
+- `git push origin dev` - push changes to dev branch from local staging to Stash remote repository 
+- `git pull origin dev` - pull changes to dev branch from Stash remote repository into your local repository
+
+
+## NPM Commands
+
+- `npm install` - fetch and intall dependencies that are configured in package.json
+
+
 ## Port Forwarding
 
 - 3000 -> 8081 web server

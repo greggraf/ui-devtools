@@ -10,9 +10,12 @@ cd /parent
 
 for f in *;
   do 
-    [ -d $f ] && cd "$f"
+    
     [ ! -d "/home/vagrant/npm/$f/node_modules"  ] && mkdir -p "/home/vagrant/npm/$f/node_modules"
     chown vagrant "/home/vagrant/npm/$f/node_modules"
-    rm -r node_modules
-    ln -s "/home/vagrant/npm/$f/node_modules" node_modules
+    
+    [ -d "$f/node_modules" ] &&  rm -r "$f/node_modules"
+    [ -f "$f/node_modules" ] &&  rm  "$f/node_modules"
+    ln -s "/home/vagrant/npm/$f/node_modules" "$f/node_modules"
+
   done;

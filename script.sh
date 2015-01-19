@@ -5,11 +5,12 @@ echo "Provisioning virtual machine"
 echo "Update apt-get"
 sudo apt-get update 
 
-echo "Installing curl, htop, build essentials, openssl, libssl-dev, pkg-config, libfontconfig, libfontconfig-dev, libfreetype6-dev"
+echo "Installing curl, htop, build essentials, openssl, libssl-dev, pkg-config, libfontconfig, libfontconfig-dev, libfreetype6-dev, apache2"
 sudo apt-get install curl -y
 sudo apt-get install htop -y
 sudo apt-get install build-essential openssl libssl-dev pkg-config -y
 sudo apt-get install libfontconfig libfontconfig-dev libfreetype6-dev -y
+sudo apt-get install apache2 -y
 
 echo "switch apt repos and get 2.x version of git"
 sudo apt-get install software-properties-common python-software-properties -y

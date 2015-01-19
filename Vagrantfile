@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--cpuexecutioncap", "75"]
     v.customize ["modifyvm", :id, "--memory", "1024"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--nestedpaging", "off"]
   end
 
   if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) == nil

@@ -44,3 +44,12 @@ fi
 echo "add node_modules/.bin to path"
 echo 'export PATH=$PATH:node_modules/.bin' >> /home/vagrant/.profile
 echo 'export PATH=$PATH:node_modules/.bin' >> /home/vagrant/.bash_profile
+
+echo "apache, jump on it"
+mv /home/vagrant/files/arc-ui_apache /etc/apache2/sites-available/arc-ui
+rm -f /etc/apache2/sites-enabled/arc-ui && ln -s /etc/apache2/sites-available/arc-ui /etc/apache2/sites-enabled/arc-ui
+/etc/init.d/apache2 restart
+
+# this should probably be last
+echo 'clean up /home/vagrant/files/'
+rm -r /home/vagrant/files/

@@ -30,10 +30,13 @@ Vagrant.configure("2") do |config|
 		config.vm.provision "shell", path: "npm_sym.sh"
   end
 
-  config.vm.network :forwarded_port, guest: 3000, host: 8088
-  config.vm.network :forwarded_port, guest: 9876, host: 9876
+  config.vm.network :forwarded_port, guest: 3000, host: 8088  # browserSync
+  config.vm.network :forwarded_port, guest: 8089, host: 8089  # apache
+  config.vm.network :forwarded_port, guest: 9876, host: 9876  # karma
 
-  config.vm.provision :shell, :inline => "echo -e '#{File.read("#{Dir.home}/.gitconfig")}' > '/home/vagrant/.gitconfig'"
-  config.vm.provision "shell", path: "script.sh"
+	config.vm.provision "file", source: "files/arc-ui_apache", destination: "/home/vagrant/files/arc-ui_apache"
+
+	config.vm.provision :shell, :inline => "echo -e '#{File.read("#{Dir.home}/.gitconfig")}' > '/home/vagrant/.gitconfig'"
+	config.vm.provision "shell", path: "script.sh"
 
 end

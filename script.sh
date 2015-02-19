@@ -5,11 +5,12 @@ echo "Provisioning virtual machine"
 echo "Update apt-get"
 sudo apt-get update 
 
-echo "Installing curl, htop, build essentials, openssl, libssl-dev, pkg-config, libfontconfig, libfontconfig-dev, libfreetype6-dev"
+echo "Installing curl, htop, build essentials, openssl, libssl-dev, pkg-config, libfontconfig, libfontconfig-dev, libfreetype6-dev, apache2"
 sudo apt-get install curl -y
 sudo apt-get install htop -y
 sudo apt-get install build-essential openssl libssl-dev pkg-config -y
 sudo apt-get install libfontconfig libfontconfig-dev libfreetype6-dev -y
+sudo apt-get install apache2 -y
 
 echo "switch apt repos and get 2.x version of git"
 sudo apt-get install software-properties-common python-software-properties -y
@@ -43,3 +44,12 @@ fi
 echo "add node_modules/.bin to path"
 echo 'export PATH=$PATH:node_modules/.bin' >> /home/vagrant/.profile
 echo 'export PATH=$PATH:node_modules/.bin' >> /home/vagrant/.bash_profile
+
+echo "apache, jump on it"
+mv /home/vagrant/files/arc-ui_apache /etc/apache2/sites-available/arc-ui
+rm -f /etc/apache2/sites-enabled/arc-ui && ln -s /etc/apache2/sites-available/arc-ui /etc/apache2/sites-enabled/arc-ui
+/etc/init.d/apache2 restart
+
+# this should probably be last
+echo 'clean up /home/vagrant/files/'
+rm -r /home/vagrant/files/

@@ -1,9 +1,9 @@
 #!/bin/bash
- 
+
 echo "Provisioning virtual machine"
 
 echo "Update apt-get"
-sudo apt-get update 
+sudo apt-get update
 
 echo "Installing curl, htop, build essentials, openssl, libssl-dev, pkg-config, libfontconfig, libfontconfig-dev, libfreetype6-dev, apache2"
 sudo apt-get install curl -y
@@ -20,12 +20,12 @@ sudo apt-get install git -y
 
 echo "nodejs"
 
-if ! type "node" > /dev/null; then 
+if ! type "node" > /dev/null; then
   cd /usr/local/src
   sudo mkdir node
   cd node
   sudo wget http://nodejs.org/dist/v0.10.35/node-v0.10.35.tar.gz
-  sudo tar -xzf node-v0.10.35.tar.gz 
+  sudo tar -xzf node-v0.10.35.tar.gz
   cd node-v0.10.35/
   sudo ./configure
   sudo make
@@ -34,7 +34,7 @@ fi
 
 echo "phantomjs"
 
-if ! type "phantomjs" > /dev/null; then 
+if ! type "phantomjs" > /dev/null; then
   cd /opt
   wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
   sudo tar -xvf phantomjs-1.9.2-linux-x86_64.tar.bz2
@@ -49,6 +49,11 @@ echo "apache, jump on it"
 mv /home/vagrant/files/arc-ui_apache /etc/apache2/sites-available/arc-ui
 rm -f /etc/apache2/sites-enabled/arc-ui && ln -s /etc/apache2/sites-available/arc-ui /etc/apache2/sites-enabled/arc-ui
 /etc/init.d/apache2 restart
+
+echo "notify-send"
+sudo apt-get install libnotify-bin
+
+
 
 # this should probably be last
 echo 'clean up /home/vagrant/files/'

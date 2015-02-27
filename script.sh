@@ -51,7 +51,7 @@ rm -f /etc/apache2/sites-enabled/arc-ui && ln -s /etc/apache2/sites-available/ar
 /etc/init.d/apache2 restart
 
 echo "notify-send"
-sudo apt-get install libnotify-bin
+sudo apt-get install libnotify-bin -y
 
 
 

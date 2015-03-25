@@ -3,9 +3,8 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "precise64"
+  config.vm.box = "phusion/ubuntu-12.04-amd64"
   config.vm.hostname = "arc-ui"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
   config.vm.network :private_network, ip: "33.33.33.11"

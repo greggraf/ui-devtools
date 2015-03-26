@@ -30,6 +30,8 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 3000, host: 8088  # browserSync
   config.vm.network :forwarded_port, guest: 8089, host: 8089  # apache
   config.vm.network :forwarded_port, guest: 9876, host: 9876  # karma
+  config.vm.network :forwarded_port, guest: 4444, host: 4444  # selenium
+  config.vm.network :forwarded_port, guest: 5999, host: 5999  # vnc
   config.vm.network :forwarded_port, guest: 35729, host: 35729  # livereload
 
 

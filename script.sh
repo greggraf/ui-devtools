@@ -5,6 +5,13 @@ echo "Provisioning virtual machine"
 echo "Update apt-get"
 sudo apt-get update
 
+echo "Install Docker and add vagrant to the docker group"
+if ! type "docker" > /dev/null; then
+	wget -qO- https://get.docker.com/ | sh
+fi
+
+usermod -aG docker vagrant
+
 echo "Installing curl, htop, build essentials, openssl, libssl-dev, pkg-config, libfontconfig, libfontconfig-dev, libfreetype6-dev, apache2"
 sudo apt-get install curl -y
 sudo apt-get install htop -y

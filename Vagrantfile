@@ -3,9 +3,8 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "precise64"
+  config.vm.box = "phusion/ubuntu-12.04-amd64"
   config.vm.hostname = "arc-ui"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
   config.vm.network :private_network, ip: "33.33.33.11"
@@ -33,6 +32,10 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 3000, host: 8088  # browserSync
   config.vm.network :forwarded_port, guest: 8089, host: 8089  # apache
   config.vm.network :forwarded_port, guest: 9876, host: 9876  # karma
+  config.vm.network :forwarded_port, guest: 4444, host: 4444  # selenium
+  config.vm.network :forwarded_port, guest: 5999, host: 5999  # vnc
+  config.vm.network :forwarded_port, guest: 35729, host: 35729  # livereload
+
 
 	config.vm.provision "file", source: "files/arc-ui_apache", destination: "/home/vagrant/files/arc-ui_apache"
 

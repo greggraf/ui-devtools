@@ -5,6 +5,13 @@ echo "Provisioning virtual machine"
 echo "Update apt-get"
 sudo apt-get update
 
+echo "Install Docker and add vagrant to the docker group"
+if ! type "docker" > /dev/null; then
+	wget -qO- https://get.docker.com/ | sh
+fi
+
+usermod -aG docker vagrant
+
 echo "Installing curl, htop, build essentials, openssl, libssl-dev, pkg-config, libfontconfig, libfontconfig-dev, libfreetype6-dev, apache2"
 sudo apt-get install curl -y
 sudo apt-get install htop -y
@@ -36,9 +43,9 @@ echo "phantomjs"
 
 if ! type "phantomjs" > /dev/null; then
   cd /opt
-  wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
-  sudo tar -xvf phantomjs-1.9.2-linux-x86_64.tar.bz2
-  sudo ln -s /opt/phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
+  wget https://phantomjs.googlecode.com/files/phantomjs-1.9.8-linux-x86_64.tar.bz2
+  sudo tar -xvf phantomjs-1.9.8-linux-x86_64.tar.bz2
+  sudo ln -s /opt/phantomjs-1.9.8-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
 fi
 
 echo "add node_modules/.bin to path"
@@ -51,7 +58,7 @@ rm -f /etc/apache2/sites-enabled/arc-ui && ln -s /etc/apache2/sites-available/ar
 /etc/init.d/apache2 restart
 
 echo "notify-send"
-sudo apt-get install libnotify-bin
+sudo apt-get install libnotify-bin -y
 
 
 

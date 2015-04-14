@@ -64,13 +64,18 @@ From within the `ui-devtools` directory, issue `vagrant up` and the development 
 ## NPM Commands
 
 - `npm install` - fetch and intall dependencies that are configured in package.json
-
+- `npm run release` - gulp bump && gulp jenkins
+- `npm run test` - gulp test
+- `npm run e2e` - start Docker container, run `gulp protractor` for End to End tests, clean up Docker container
 
 ## Port Forwarding
 
-- 3000 -> 8081 web server
-- 9876 -> 9876 Karma test runner and results
-
+- 3000  -> 8088 BrowserSync web server
+- 35729 -> 35729 Live Reload server
+- 8089  -> 8089 Apache web server (serving /parent/arc-ui/dist/)
+- 9876  -> 9876 Karma test runner and results
+- 4444  -> 4444 Selenium server (when Docker Container is running)
+- 5999 - > 5999 VNC to see headless browser running in Docker container (not yet working)
 
 ## Included Software
 
@@ -78,5 +83,7 @@ From within the `ui-devtools` directory, issue `vagrant up` and the development 
 - phantomjs
 - curl
 - htop
-- git
+- git 2.x
+- docker
+- apache
 

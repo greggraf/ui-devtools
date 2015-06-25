@@ -40,4 +40,9 @@ Vagrant.configure("2") do |config|
 	config.vm.provision :shell, :inline => "echo -e '#{File.read("#{Dir.home}/.gitconfig")}' > '/home/vagrant/.gitconfig'"
 	config.vm.provision "shell", path: "script.sh"
 
+# install nvm for the vagrant user and install io.js 
+ 	config.vm.provision :shell, :privileged => false, :inline => "if ! type 'nvm' > /dev/null; then curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | PROFILE=~/.bash_profile bash; fi"
+ 	config.vm.provision :shell, :privileged => false, :inline => 'source ~/.bash_profile && nvm install iojs && nvm use system'
+
+
 end

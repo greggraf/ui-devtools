@@ -12,7 +12,8 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |v|
     v.name = "arc-ui"
     v.customize ["modifyvm", :id, "--cpuexecutioncap", "75"]
-    v.customize ["modifyvm", :id, "--memory", "1024"]
+    v.customize ["modifyvm", :id, "--cpus", "2"]
+    v.customize ["modifyvm", :id, "--memory", "2048"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     v.customize ["modifyvm", :id, "--nestedpaging", "off"]
   end
@@ -42,7 +43,7 @@ Vagrant.configure("2") do |config|
 	config.vm.provision :shell, :inline => "echo -e '#{File.read("#{Dir.home}/.gitconfig")}' > '/home/vagrant/.gitconfig'"
 	config.vm.provision "shell", path: "script.sh"
 
-# install nvm for the vagrant user and install io.js 
+# install nvm for the vagrant user and install io.js
  	config.vm.provision :shell, :privileged => false, :inline => "if ! type 'nvm' > /dev/null; then curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | PROFILE=~/.bash_profile bash; fi"
  	config.vm.provision :shell, :privileged => false, :inline => 'source ~/.bash_profile && nvm install iojs && nvm use system'
 

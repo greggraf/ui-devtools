@@ -21,9 +21,8 @@ Vagrant.configure("2") do |config|
   if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) == nil
     config.nfs.map_uid = Process.uid
     config.nfs.map_gid = Process.gid
-    config.vm.synced_folder "./", "/current", type: "nfs"
-
-    config.vm.synced_folder "../", "/parent", type: "nfs"
+    config.vm.synced_folder "./", "/current", type: "nfs", :mount_options => ['nolock,vers=3,udp,noatime,actimeo=1']
+    config.vm.synced_folder "../", "/parent", type: "nfs", :mount_options => ['nolock,vers=3,udp,noatime,actimeo=1']
 
   else
     config.vm.synced_folder ".", "/current/"

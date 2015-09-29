@@ -43,7 +43,7 @@ echo "phantomjs"
 
 if ! type "phantomjs" > /dev/null; then
   cd /opt
-  wget https://phantomjs.googlecode.com/files/phantomjs-1.9.8-linux-x86_64.tar.bz2
+  wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2
   sudo tar -xvf phantomjs-1.9.8-linux-x86_64.tar.bz2
   sudo ln -s /opt/phantomjs-1.9.8-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
 fi
@@ -51,6 +51,8 @@ fi
 echo "add node_modules/.bin to path"
 echo 'export PATH=$PATH:node_modules/.bin' >> /home/vagrant/.profile
 echo 'export PATH=$PATH:node_modules/.bin' >> /home/vagrant/.bash_profile
+chown vagrant /home/vagrant/.bash_profile
+
 
 echo "apache, jump on it"
 mv /home/vagrant/files/arc-ui_apache /etc/apache2/sites-available/arc-ui
@@ -59,7 +61,6 @@ rm -f /etc/apache2/sites-enabled/arc-ui && ln -s /etc/apache2/sites-available/ar
 
 echo "notify-send"
 sudo apt-get install libnotify-bin -y
-
 
 
 # this should probably be last

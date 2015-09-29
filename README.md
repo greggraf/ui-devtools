@@ -87,3 +87,17 @@ From within the `ui-devtools` directory, issue `vagrant up` and the development 
 - docker
 - apache
 
+
+
+## Windows and Vagrant and NPM
+
+There are a few issues around running NPM in Windows that the Vagrant VM should help with. 
+
+One obstacle is that some NPM packages use symbolic links and Windows has some limitations around symbolic links. I have enabled symbolic link support in the Vagrant configuration file, but it requires that the terminal window used to issue Vagrant command is "run as administrator". 
+
+Another problem is that Windows has a 255 character limit on file paths.  The nested NPM dependency folder structure can bump up against that limit.
+
+On Windows hosts Vagrant is configured to invoke a script that enters each chile directory of the /parent/ directory and creates a symbolic link from node_modules/ to a/home/vagrant/npm/\{directory name\}/node_modules/ directory.  The goal of this approach is to keep all the NPM packages *within the VM* and out of the Windows machine.
+
+- http://blog.rudylee.com/2014/10/27/symbolic-links-with-vagrant-windows/
+- http://kmile.nl/post/73956428426/npm-vagrant-and-symlinks-on-windows

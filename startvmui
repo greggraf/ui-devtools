@@ -1,0 +1,7 @@
+#!/bin/sh
+#username/password: vagrant/vagrant
+#to reset grub: sudo update-grub
+
+MACHINE_ID=$(cat .vagrant/machines/default/virtualbox/id)
+VBoxManage controlvm ${MACHINE_ID} poweroff
+VBoxManage startvm ${MACHINE_ID}

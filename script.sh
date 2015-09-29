@@ -31,7 +31,7 @@ echo "phantomjs"
 
 if ! type "phantomjs" > /dev/null; then
   cd /opt
-  wget https://phantomjs.googlecode.com/files/phantomjs-1.9.8-linux-x86_64.tar.bz2
+  wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2
   sudo tar -xvf phantomjs-1.9.8-linux-x86_64.tar.bz2
   sudo ln -s /opt/phantomjs-1.9.8-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
 fi

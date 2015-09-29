@@ -39,5 +39,6 @@ Vagrant.configure("2") do |config|
 
 	config.vm.provision :shell, :inline => "echo -e '#{File.read("#{Dir.home}/.gitconfig")}' > '/home/vagrant/.gitconfig'"
 	config.vm.provision "shell", path: "script.sh"
+	config.vm.provision :shell, :path => "user.sh", privileged: false
 
 end

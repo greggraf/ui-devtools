@@ -13,7 +13,11 @@ fi
 
 echo "install nvm Node Version Manager"
 
+source /home/vagrant/.bash_profile
+
 if ! command -v nvm >/dev/null 2>&1; then
+
+  echo "nvm not installed"
 
   curl https://raw.githubusercontent.com/creationix/nvm/v0.23.3/install.sh | bash
 

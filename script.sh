@@ -12,7 +12,7 @@ if ! command -v docker >/dev/null 2>&1; then
 	sudo curl -sSL https://get.docker.com/ | sh
 fi
 
-usermod -aG docker vagrant
+sudo usermod -aG docker vagrant
 
 echo "Installing curl, htop, build essentials, openssl, libssl-dev, pkg-config, libfontconfig, libfontconfig-dev, libfreetype6-dev, apache2"
 sudo apt-get install curl -y

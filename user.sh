@@ -29,6 +29,8 @@ if ! command -v nvm >/dev/null 2>&1; then
 	nvm install 4.0.0
 	nvm install 0.10.35
 
+  npm install -g npm@2.14.11
+  
   echo "nvm use 0.10.35" >> /home/vagrant/.profile
   echo "nvm use 0.10.35" >> /home/vagrant/.bash_profile
 

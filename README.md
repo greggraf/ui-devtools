@@ -80,6 +80,7 @@ From within the `ui-devtools` directory, issue `vagrant up` and the development 
 ## Included Software
 
 - nodejs/npm
+- nvm
 - phantomjs
 - curl
 - htop
@@ -101,3 +102,26 @@ On Windows hosts Vagrant is configured to invoke a script that enters each chile
 
 - http://blog.rudylee.com/2014/10/27/symbolic-links-with-vagrant-windows/
 - http://kmile.nl/post/73956428426/npm-vagrant-and-symlinks-on-windows
+
+## Packaging and Updating Our Vagrant Box
+
+In order to speed up the `vagrant up` command, the following files are used to create a VM that can then be packaged up as a Vagrant box:
+
+- arcui.json
+- BaseVagrantFile
+
+The `BaseVagrantFile` is used to provision a machine with all the software installed using the `phusion/ubuntu-12.04-amd64` base box. This machine can be created using the following Vagrant command:
+
+`VAGRANT_VAGRANTFILE=BaseVagrantFile vagrant up`
+
+After this machine is created, provisioned and running it can be packaged up as a Vagrant box called `arcui.box` using this command:
+
+`vagrant package --output dist/arcui.box`
+
+Once packaged this way, the default VagrantFile can use this box file start from.
+
+The `arcui.json` file allows us to set up versioning on our box file.  If a new version appears or the checksum varies, the users `vagrant up` command will warn the user. Vagrant keeps local versions of the box file so this warning will keep happening until the user issues the command `vagrant box update`.
+
+The JSON file is pretty self explanatory.  My plan is to update the as we create new files following the convention in place, changing the version number.  Then when the checksums don't match, grab the generated one from the console output and drop it into the JSON file.
+
+We should not be putting the .box files into version control as they are pretty big and they are generated code.  So for now, I am manually uploading and storing them on S3 using a bucket from the Mobile Web account.  In the future this step should be part of a Jenkins build step and automated. 

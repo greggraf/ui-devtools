@@ -3,7 +3,8 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "phusion/ubuntu-12.04-amd64"
+	config.vm.box = "arcui"
+  config.vm.box_url = "file://arcui.json"
   config.vm.hostname = "arc-ui"
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
@@ -22,8 +23,8 @@ Vagrant.configure("2") do |config|
   if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) == nil
     config.nfs.map_uid = Process.uid
     config.nfs.map_gid = Process.gid
-    config.vm.synced_folder "./", "/current", type: "nfs", :mount_options => ['nolock,vers=3,udp,noatime,actimeo=1']
-    config.vm.synced_folder "../", "/parent", type: "nfs", :mount_options => ['nolock,vers=3,udp,noatime,actimeo=1']
+    config.vm.synced_folder "./", "/current", type: "nfs", :mount_options => ['actimeo=1']
+    config.vm.synced_folder "../", "/parent", type: "nfs", :mount_options => ['actimeo=1']
 
   else
     config.vm.synced_folder ".", "/current/"
@@ -39,10 +40,6 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 35729, host: 35729  # livereload
 
 
-	config.vm.provision "file", source: "files/arc-ui_apache", destination: "/home/vagrant/files/arc-ui_apache"
-
 	config.vm.provision :shell, :inline => "echo -e '#{File.read("#{Dir.home}/.gitconfig")}' > '/home/vagrant/.gitconfig'"
-	config.vm.provision "shell", path: "script.sh"
-	config.vm.provision :shell, :path => "user.sh", privileged: false
 
 end

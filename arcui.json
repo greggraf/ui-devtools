@@ -1,0 +1,17 @@
+{
+  "description": "ARC UI Development Vagrant Box",
+  "name": "arcui",
+  "versions": [
+    {
+      "providers": [
+        {
+          "checksum": "b31c8fd1ab9fd56e87f188d28e49147fb7ae09247701ad19335a83511ca0a57a",
+          "checksum_type": "sha256",
+          "name": "virtualbox",
+          "url": "https://s3.amazonaws.com/mbs-vagrant-boxes/arcui_v0.1.1.box"
+        }
+      ],
+      "version": "0.1.1"
+    }
+  ]
+}

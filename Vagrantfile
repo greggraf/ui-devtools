@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "arc-ui"
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
-  config.vm.network :private_network, type: "dhcp"
+  config.vm.network :private_network, ip: "192.168.50.4"
 
   config.vm.provider "virtualbox" do |v|
     v.name = "arc-ui"

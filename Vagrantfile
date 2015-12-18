@@ -39,6 +39,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 5999, host: 5999  # vnc
   config.vm.network :forwarded_port, guest: 35729, host: 35729  # livereload
 
+	config.vm.provision :shell, :path => "nvm.sh", privileged: false
 
 	config.vm.provision :shell, :inline => "echo -e '#{File.read("#{Dir.home}/.gitconfig")}' > '/home/vagrant/.gitconfig'"
 

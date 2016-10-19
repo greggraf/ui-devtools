@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--cpus", "2"]
     v.customize ["modifyvm", :id, "--memory", "2048"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-		v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]    
+		v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
     v.customize ["modifyvm", :id, "--nestedpaging", "off"]
   end
 
@@ -33,14 +33,21 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.network :forwarded_port, guest: 3000, host: 8088  # browserSync
+  config.vm.network :forwarded_port, guest: 8000, host: 8000  # 8000
   config.vm.network :forwarded_port, guest: 8089, host: 8089  # apache
   config.vm.network :forwarded_port, guest: 9876, host: 9876  # karma
   config.vm.network :forwarded_port, guest: 4444, host: 4444  # selenium
   config.vm.network :forwarded_port, guest: 5999, host: 5999  # vnc
   config.vm.network :forwarded_port, guest: 35729, host: 35729  # livereload
+  config.vm.network :forwarded_port, guest: 3010, host: 3010  # browserSync for selenium tests
 
 	config.vm.provision :shell, :path => "nvm.sh", privileged: false
 
+#	config.vm.provision :shell, :inline => "mkdir /usr/local/bin/packer && cd /usr/local/bin/packer"
+#	config.vm.provision :shell, :inline => "wget https://releases.hashicorp.com/packer/0.10.1/packer_0.10.1_linux_amd64.zip"
+#	config.vm.provision :shell, :inline => "unzip packer_0.10.1_linux_amd64.zip"
+
 	config.vm.provision :shell, :inline => "echo -e '#{File.read("#{Dir.home}/.gitconfig")}' > '/home/vagrant/.gitconfig'"
+
 
 end
